@@ -1,0 +1,2 @@
+/Users/mustafahadil/TRPL/flutter/task/slicingtask/android/app/.cxx/Debug/m4l2s581/x86/CMakeFiles/edit_cache.dir
+/Users/mustafahadil/TRPL/flutter/task/slicingtask/android/app/.cxx/Debug/m4l2s581/x86/CMakeFiles/rebuild_cache.dir
