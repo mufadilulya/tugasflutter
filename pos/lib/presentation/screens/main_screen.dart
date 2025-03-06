@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pos/widgets/appcolors.dart';
-import 'package:pos/screens/history_screen.dart';
-import 'package:pos/screens/home_screen.dart';
-import 'package:pos/screens/settings_screen.dart';
-import 'package:pos/screens/ticket_screen.dart';
-import 'package:pos/widgets/assets_const.dart';
+import 'package:pos/components/appcolors.dart';
+import 'package:pos/presentation/screens/history_screen.dart';
+import 'package:pos/presentation/screens/home_screen.dart';
+import 'package:pos/presentation/screens/settings_screen.dart';
+import 'package:pos/presentation/screens/ticket_screen.dart';
+import 'package:pos/components/assets_const.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -25,6 +25,17 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Main Screen"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart, color: Colors.blue),
+            onPressed: () {
+              Navigator.pushNamed(context, '/ticket');
+            },
+          ),
+        ],
+      ),
       body: screen[posisiSaatIni],
       bottomNavigationBar: BottomNavigationBar(
         mouseCursor: MouseCursor.defer,

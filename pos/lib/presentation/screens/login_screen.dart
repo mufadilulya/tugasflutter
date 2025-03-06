@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pos/widgets/appcolors.dart';
-import 'package:pos/widgets/assets_const.dart';
-import 'package:pos/widgets/custom_text_field.dart';
-import 'package:pos/widgets/custom_button.dart';
+import 'package:pos/components/appcolors.dart';
+import 'package:pos/components/assets_const.dart';
+import 'package:pos/components/custom_text_field.dart';
+import 'package:pos/components/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
