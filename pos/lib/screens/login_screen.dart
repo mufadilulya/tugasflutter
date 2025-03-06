@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pos/appcolors.dart';
+import 'package:pos/widgets/appcolors.dart';
+import 'package:pos/widgets/assets_const.dart';
 import 'package:pos/widgets/custom_text_field.dart';
 import 'package:pos/widgets/custom_button.dart';
 
@@ -13,10 +14,8 @@ class LoginScreen extends StatelessWidget {
       body: Stack(
         children: [
           SizedBox(
-            height: 260.0,
-            child: Center(
-              child: Image.asset('assets/images/logo.png', height: 85.0),
-            ),
+            height: 80.0,
+            child: Center(child: Image.asset(AssetsConst.fromLogo)),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -47,7 +46,12 @@ class LoginScreen extends StatelessWidget {
                           prefixIcon: Icons.lock,
                         ),
                         SizedBox(height: 24),
-                        CustomButton(text: 'Login', onPressed: () {}),
+                        CustomButton(
+                          text: 'Login',
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/main');
+                          },
+                        ),
                       ],
                     ),
                   ),
