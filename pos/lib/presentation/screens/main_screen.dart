@@ -26,12 +26,15 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Main Screen"),
+        // title: const Text("Main Screen"),
         actions: [
           IconButton(
-            icon: const Icon(Icons.shopping_cart, color: Colors.blue),
+            icon: const Icon(Icons.airplane_ticket, color: Colors.blue),
             onPressed: () {
-              Navigator.pushNamed(context, '/ticket');
+              Navigator.pushNamed(
+                context,
+                '/ticketList',
+              ); // Navigasi ke TicketListScreen
             },
           ),
         ],
