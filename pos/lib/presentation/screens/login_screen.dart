@@ -15,45 +15,71 @@ class LoginScreen extends StatelessWidget {
         children: [
           SizedBox(
             height: 80.0,
-            child: Center(child: Image.asset(AssetsConst.fromLogo)),
+            child: Center(
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width / 2,
+                child: Image.asset(AssetsConst.fromLogo),
+              ),
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: SingleChildScrollView(
-              child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(30.0),
-                ),
-                child: ColoredBox(
-                  color: AppColor.third,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 28.0,
-                      vertical: 44.0,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomTextField(
-                          hintText: 'Email',
-                          keyboardType: TextInputType.emailAddress,
-                          prefixIcon: Icons.email,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0),
+              ),
+              child: ColoredBox(
+                color: AppColor.third,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 44),
+                      Text(
+                        'Email',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(height: 16),
-                        CustomTextField(
-                          hintText: 'Password',
-                          obscureText: true,
-                          prefixIcon: Icons.lock,
+                      ),
+                      TextField(
+                        decoration: InputDecoration(hintText: 'Email Loket'),
+                      ),
+                      SizedBox(height: 36),
+                      Text(
+                        'Password',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(height: 24),
-                        CustomButton(
+                      ),
+                      TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: 'Masukkan Password',
+                          suffixIcon: Icon(Icons.visibility),
+                        ),
+                      ),
+                      const SizedBox(height: 86.0),
+                      SizedBox(
+                        width: double.infinity,
+                        child: CustomButton(
                           text: 'Login',
                           onPressed: () {
                             Navigator.pushNamed(context, '/main');
                           },
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 128.0),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Image.asset(AssetsConst.fromLogo, height: 70.0),
+                      ),
+                      SizedBox(height: 20.0),
+                    ],
                   ),
                 ),
               ),

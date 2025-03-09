@@ -25,20 +25,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // title: const Text("Main Screen"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.airplane_ticket, color: Colors.blue),
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                '/ticketList',
-              ); // Navigasi ke TicketListScreen
-            },
-          ),
-        ],
-      ),
       body: screen[posisiSaatIni],
       bottomNavigationBar: BottomNavigationBar(
         mouseCursor: MouseCursor.defer,
