@@ -27,6 +27,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: screen[posisiSaatIni],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         mouseCursor: MouseCursor.defer,
         unselectedItemColor: AppColor.second,
         selectedItemColor: AppColor.first,
