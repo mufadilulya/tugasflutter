@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'qrispayment_screen.dart';
 
 class OrderDetailScreen extends StatelessWidget {
   final List<Map<String, dynamic>> orderItems;
@@ -80,9 +81,32 @@ class OrderDetailScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                PaymentMethodButton(icon: Icons.qr_code, label: 'QRIS'),
-                PaymentMethodButton(icon: Icons.money, label: 'Tunai'),
-                PaymentMethodButton(icon: Icons.credit_card, label: 'Transfer'),
+                PaymentMethodButton(
+                  icon: Icons.qr_code,
+                  label: 'QRIS',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => QrisPaymentScreen(
+                              amount: totalPrice,
+                              totalPrice: totalPrice,
+                            ),
+                      ),
+                    );
+                  },
+                ),
+                PaymentMethodButton(
+                  icon: Icons.money,
+                  label: 'Tunai',
+                  onTap: () {},
+                ),
+                PaymentMethodButton(
+                  icon: Icons.credit_card,
+                  label: 'Transfer',
+                  onTap: () {},
+                ),
               ],
             ),
             const SizedBox(height: 20),
@@ -108,9 +132,7 @@ class OrderDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Tambahkan logika jika proses pembayaran diklik
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
                   vertical: 16.0,
@@ -132,17 +154,19 @@ class OrderDetailScreen extends StatelessWidget {
 class PaymentMethodButton extends StatelessWidget {
   final IconData icon;
   final String label;
+  final VoidCallback onTap;
 
   const PaymentMethodButton({
     super.key,
     required this.icon,
     required this.label,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onTap,
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(12.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
