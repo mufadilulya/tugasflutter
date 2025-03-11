@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pos/models/ticket.dart';
 import 'package:pos/components/ticket_card.dart';
+import 'package:pos/presentation/screens/orderdetail_screen.dart';
 
 class TicketListScreen extends StatefulWidget {
   const TicketListScreen({super.key});
 
   @override
-  _TicketListScreenState createState() => _TicketListScreenState();
+  State<TicketListScreen> createState() => _TicketListScreenState();
 }
 
 class _TicketListScreenState extends State<TicketListScreen> {
@@ -17,17 +18,29 @@ class _TicketListScreenState extends State<TicketListScreen> {
     Ticket(title: "Tiket Masuk Anak", category: "Mancanegara", price: 40000),
   ];
 
-  int getTotalPrice() {
-    return tickets.fold(
-      0,
-      (sum, ticket) => sum + (ticket.price * ticket.quantity),
-    );
+  // Menghasilkan orderItems berdasarkan tiket yang dipilih (quantity > 0)
+  List<Map<String, dynamic>> get orderItems {
+    return tickets
+        .where((ticket) => ticket.quantity > 0)
+        .map(
+          (ticket) => {
+            'name': ticket.title,
+            'description': ticket.category,
+            'price': ticket.price,
+            'quantity': ticket.quantity,
+          },
+        )
+        .toList();
   }
+
+  // Menghitung total harga dari semua tiket yang dipilih
+  int get totalPrice =>
+      tickets.fold(0, (sum, ticket) => sum + (ticket.price * ticket.quantity));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Penjualan Tiket")),
+      appBar: AppBar(title: const Text("Penjualan Tiket")),
       body: Column(
         children: [
           Expanded(
@@ -57,13 +70,13 @@ class _TicketListScreenState extends State<TicketListScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Order Summary",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "Rp. ${getTotalPrice()}",
-                  style: TextStyle(
+                  "Rp. $totalPrice",
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.blue,
@@ -74,9 +87,35 @@ class _TicketListScreenState extends State<TicketListScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Implementasi checkout
+                      if (orderItems.isNotEmpty) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) => OrderDetailScreen(
+                                  orderItems: orderItems,
+                                  totalPrice: totalPrice,
+                                ),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Tidak ada tiket yang dipilih.'),
+                          ),
+                        );
+                      }
                     },
-                    child: Text("Process"),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 16.0,
+                        horizontal: 32.0,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text("Process"),
                   ),
                 ),
               ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pos/presentation/screens/main_screen.dart';
-import 'package:pos/presentation/screens/ticketlist_screen.dart';
 import 'presentation/screens/splash_screen.dart';
 import 'presentation/screens/login_screen.dart';
 
@@ -21,7 +20,6 @@ class MyApp extends StatelessWidget {
         '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/main': (context) => const MainScreen(),
-        '/ticketList': (context) => const TicketListScreen(),
       },
     );
   }
