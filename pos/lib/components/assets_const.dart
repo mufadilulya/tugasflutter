@@ -1,5 +1,6 @@
 class AssetsConst {
   static const String fromLogo = 'assets/images/logo.png';
+  static const String bckbtn = 'assets/images/backbutton.png';
   static const String fromLogoHomeGrey = 'assets/images/homegreylogo.png';
   static const String fromLogoHomeBlue = 'assets/images/homebluelogo.png';
   static const String fromLogoTicketGrey = 'assets/images/ticketgreylogo.png';
